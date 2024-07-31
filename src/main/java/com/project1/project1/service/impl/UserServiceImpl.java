@@ -1,6 +1,7 @@
 package com.project1.project1.service.impl;
 
 import com.project1.project1.dto.UserDTO;
+import com.project1.project1.exception.DuplicationException;
 import com.project1.project1.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isDuplicated(String id) {
+        if(true)
+            throw new DuplicationException("테스트중입니다");
         log.info("테스트입니다.");
         return false;
     }

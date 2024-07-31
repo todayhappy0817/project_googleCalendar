@@ -20,6 +20,7 @@ public class UserController {
     }
     @GetMapping("/getUserInfo")
     public UserDTO getUserInfo() {
+        userService.isDuplicated("Test");
         userService.getUserInfo("TestData");
         return null;
     }
