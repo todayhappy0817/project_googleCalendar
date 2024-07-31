@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.batch.batch.model.BatchMapper">
+    <select id="findAll" resultType="com.batch.batch.domain.User">
+        SELECT *
+        FROM TB_SIMPLE_MQ
+		<![CDATA[ WHERE DATE < NOW()]]>
+          AND COMPLETED NOT IN ('Y','F');
+    </select>
+
+    <update id="update_Success">
+        UPDATE
+            TB_SIMPLE_MQ
+        SET COMPLETED = 'Y'
+        WHERE ID = #{USER_id}
+    </update>
+
+    <update id="update_Fail">
+        UPDATE
+            TB_SIMPLE_MQ
+        SET COMPLETED = 'F'
+        WHERE ID = #{USER_id}
+    </update>
+
+</mapper>

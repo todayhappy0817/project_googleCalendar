@@ -14,7 +14,6 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public UserDTO login(String id, String Password) {
-
         return null;
     }
 
@@ -30,6 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isDuplicated(String id) {
+        log.info("테스트입니다.");
         return false;
     }
 
