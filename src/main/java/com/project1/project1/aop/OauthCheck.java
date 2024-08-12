@@ -7,8 +7,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.CLASS)
+@Target(ElementType.METHOD)
 public @interface OauthCheck {
     String value() default "";
     String test() default "";

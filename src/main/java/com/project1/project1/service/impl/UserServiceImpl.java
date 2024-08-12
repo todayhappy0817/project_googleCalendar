@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
-@OauthCheck(value ="Check if user is logged in", test = "hi" , type = OauthCheck.UserType.ADMIN)
 public class UserServiceImpl implements UserService {
     @Override
     public void registerUser(UserDTO userDto) {
@@ -31,6 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @OauthCheck(value ="Check if user is logged in", test = "hi" , type = OauthCheck.UserType.ADMIN)
     public boolean isDuplicated(String id) {
 //        if(true)
 //            throw new DuplicationException("테스트중입니다");
