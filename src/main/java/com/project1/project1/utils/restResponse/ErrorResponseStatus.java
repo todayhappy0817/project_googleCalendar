@@ -10,9 +10,7 @@ import org.springframework.web.client.HttpClientErrorException;
 public enum ErrorResponseStatus {
     Fail("F001", HttpStatus.BAD_REQUEST, "one or more required API parameters"), //401에러
     NotFound("F004",HttpStatus.NOT_FOUND, "page Not Found"),;
-
     private final String code;
     private final HttpStatus httpStatus;
     private final String moreInformation;
-
 }

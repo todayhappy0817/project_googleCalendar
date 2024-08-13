@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Log4j2
 @RequestMapping("/users")
 @RestController
@@ -26,6 +28,8 @@ public class UserController {
     public ResponseEntity<ResponseDto<?>> getUserInfo() {
         userService.isDuplicated("Test");
         userService.getUserInfo("TestData");
-        return RestResponseUtil.Fail();
+//        return RestResponseUtil.Fail();
+        List<String> testData = List.of("h1", "h2", "h3", "h4", "h5", "h6");
+        return RestResponseUtil.Success(testData);
     }
 }

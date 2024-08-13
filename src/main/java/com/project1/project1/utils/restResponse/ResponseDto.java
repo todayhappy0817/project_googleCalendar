@@ -10,5 +10,5 @@ import org.springframework.http.HttpStatus;
 public class ResponseDto<T> {
     private final String code;
     private final HttpStatus httpStatus;
-    private final String moreInformation;
+
 }
