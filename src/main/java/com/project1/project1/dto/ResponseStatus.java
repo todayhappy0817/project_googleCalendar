@@ -6,9 +6,8 @@ import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
-public class ResponseType<T> {
-    private int code;
-    private String message;
-    private T data;
-
+public enum ResponseStatus {
+    SUCCESS(200,"");
+    private final int status;
+    private final String message;
 }
