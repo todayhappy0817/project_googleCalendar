@@ -1,8 +1,7 @@
-package com.project1.project1.dto;
+package com.project1.project1.utils.restResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
