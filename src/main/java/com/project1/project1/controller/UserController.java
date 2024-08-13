@@ -25,11 +25,12 @@ public class UserController {
         userService.registerUser(user);
     }
     @GetMapping("/getUserInfo")
-    public ResponseEntity<ResponseDto<?>> getUserInfo() {
+    public ResponseEntity<ResponseDto> getUserInfo() {
         userService.isDuplicated("Test");
         userService.getUserInfo("TestData");
-//        return RestResponseUtil.Fail();
+
         List<String> testData = List.of("h1", "h2", "h3", "h4", "h5", "h6");
-        return RestResponseUtil.Success(testData);
+        //return RestResponseUtil.Success(testData);
+        return RestResponseUtil.Fail();
     }
 }

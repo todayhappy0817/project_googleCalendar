@@ -3,7 +3,7 @@ package com.project1.project1.utils.restResponse;
 import lombok.Getter;
 
 @Getter
-public class ErrorResponseDto<T> extends ResponseDto<T> {
+public class ErrorResponseDto<T> extends ResponseDto {
     private final String moreInformation;
 
     private ErrorResponseDto(ErrorResponseStatus status) {

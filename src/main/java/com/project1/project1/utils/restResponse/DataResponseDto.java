@@ -3,7 +3,7 @@ package com.project1.project1.utils.restResponse;
 import lombok.Getter;
 
 @Getter
-public class DataResponseDto<T> extends ResponseDto<T>{
+public class DataResponseDto<T> extends ResponseDto{
     private final T data;
 
     private DataResponseDto(T data){
