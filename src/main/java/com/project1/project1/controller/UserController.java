@@ -1,6 +1,7 @@
 package com.project1.project1.controller;
 
 
+import com.project1.project1.exception.DuplicationException;
 import com.project1.project1.utils.restResponse.ErrorResponseDto;
 import com.project1.project1.dto.UserDTO;
 import com.project1.project1.service.UserService;
@@ -30,7 +31,10 @@ public class UserController {
         userService.getUserInfo("TestData");
 
         List<String> testData = List.of("h1", "h2", "h3", "h4", "h5", "h6");
-        //return RestResponseUtil.Success(testData);
-        return RestResponseUtil.Fail();
+        if(testData.size() > 1) {
+            throw new DuplicationException("");
+        }
+        return RestResponseUtil.Success(testData);
+//        return RestResponseUtil.Fail();
     }
 }

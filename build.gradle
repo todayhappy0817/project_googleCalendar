@@ -32,6 +32,12 @@ dependencies {
 	implementation group: 'com.google.api-client', name: 'google-api-client', version: '2.5.1'
 	implementation group: 'com.google.apis', name: 'google-api-services-calendar', version: 'v3-rev20231123-2.0.0'
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation("com.slack.api:slack-api-client:1.41.0")
+//	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.4.1'
+//	testImplementation group: 'com.h2database', name: 'h2', version: '2.3.232'
+	implementation group: 'com.h2database', name: 'h2', version: '2.3.232'
 }
 
 tasks.named('test') {

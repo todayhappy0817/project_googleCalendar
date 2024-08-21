@@ -16,5 +16,4 @@ public class RestResponseUtil{
     private ResponseEntity<ResponseDto> responseEntity(){
         return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponseDto.from(ErrorResponseStatus.Fail));
     }
-
 }
