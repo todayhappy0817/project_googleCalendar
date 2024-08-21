@@ -6,7 +6,8 @@ import org.springframework.http.ResponseEntity;
 public class RestResponseUtil{
 
     public static ResponseEntity<ResponseDto> Fail(){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponseDto.from(ErrorResponseStatus.Fail));
+        //return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponseDto.from(ErrorResponseStatus.Fail));
+        return ResponseEntity.badRequest().body(ErrorResponseDto.from(ErrorResponseStatus.Fail));
     }
     public static ResponseEntity<ResponseDto> Success(Object object){
         return ResponseEntity.status(HttpStatus.OK).body(DataResponseDto.success(object));

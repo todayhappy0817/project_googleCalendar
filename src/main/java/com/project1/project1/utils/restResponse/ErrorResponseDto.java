@@ -11,7 +11,7 @@ public class ErrorResponseDto<T> extends ResponseDto {
         this.moreInformation = status.getMoreInformation();
     }
 
-    public static <T> ErrorResponseDto<T> from(ErrorResponseStatus status){
-        return new ErrorResponseDto<T>(status);
+    public static ErrorResponseDto<ResponseDto> from(ErrorResponseStatus status){
+        return new ErrorResponseDto<ResponseDto>(status);
     }
 }
