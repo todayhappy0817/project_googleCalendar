@@ -4,15 +4,22 @@ package com.project1.project1.exception;
 import com.project1.project1.utils.restResponse.ResponseDto;
 import com.project1.project1.utils.restResponse.RestResponseUtil;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(DuplicationException.class)
     protected ResponseEntity<ResponseDto> duplicationException(DuplicationException e) {
 
+        return RestResponseUtil.Fail();
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    protected ResponseEntity<ResponseDto> missing(MissingServletRequestParameterException e) {
         return RestResponseUtil.Fail();
     }
 }

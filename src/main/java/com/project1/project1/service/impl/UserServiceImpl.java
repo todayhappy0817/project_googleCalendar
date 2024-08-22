@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     public boolean isDuplicated(String id) {
 //        if(true)
 //            throw new DuplicationException("테스트중입니다");
-        log.info("테스트입니다.");
+        log.info("테스트입니다:{}", id);
         return false;
     }
 
