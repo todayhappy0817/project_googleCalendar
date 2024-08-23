@@ -27,8 +27,9 @@ public class UserController {
     }
     @GetMapping("/getUserInfo")
     public ResponseEntity<ResponseDto> getUserInfo(@ModelAttribute UserDTO user) {
-        userService.isDuplicated(user.getName());
-        userService.getUserInfo("TestData");
+        userService.registerUser(user);
+//        userService.isDuplicated(user.getName());
+//        userService.getUserInfo("TestData");
         List<String> testData = List.of("h1", "h2", "h3", "h4", "h5", "h6");
 //        if(testData.size() > 1) {
 //            throw new DuplicationException("");

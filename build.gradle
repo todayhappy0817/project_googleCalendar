@@ -38,6 +38,8 @@ dependencies {
 //	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.4.1'
 //	testImplementation group: 'com.h2database', name: 'h2', version: '2.3.232'
 	implementation group: 'com.h2database', name: 'h2', version: '2.3.232'
+	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
 }
 
 tasks.named('test') {

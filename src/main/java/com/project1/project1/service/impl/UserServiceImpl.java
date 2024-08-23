@@ -1,18 +1,25 @@
 package com.project1.project1.service.impl;
 
 import com.project1.project1.aop.OauthCheck;
+import com.project1.project1.domain.User;
 import com.project1.project1.dto.UserDTO;
 import com.project1.project1.exception.DuplicationException;
+import com.project1.project1.mapper.UserMapper;
 import com.project1.project1.service.UserService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
 public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public void registerUser(UserDTO userDto) {
-        log.info("user 정보를 생성했습니다.");
+        User user= userMapper.toDomain(userDto);
+        log.info("user 정보를 생성했습니다.{}", userMapper.toDTO(user).getName());
     }
     @Override
     public UserDTO login(String id, String Password) {
