@@ -8,6 +8,7 @@ import com.project1.project1.mapper.UserMapper;
 import com.project1.project1.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +18,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
+    @Cacheable()
     public void registerUser(UserDTO userDto) {
         User user= userMapper.toDomain(userDto);
         log.info("user 정보를 생성했습니다.{}", userMapper.toDTO(user).getName());
