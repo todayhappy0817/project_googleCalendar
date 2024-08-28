@@ -14,7 +14,6 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(DuplicationException.class)
     protected ResponseEntity<ResponseDto> duplicationException(DuplicationException e) {
-
         return RestResponseUtil.Fail();
     }
 
