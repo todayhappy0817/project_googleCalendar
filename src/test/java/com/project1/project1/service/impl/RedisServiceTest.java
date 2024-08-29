@@ -21,10 +21,6 @@ public class RedisServiceTest {
     void testStringRedisTemplate() {
         List<String> t = List.of("S1", "S2");
         redisTemplate.opsForValue().set("key3", t);
-//        redisTemplate.opsForValue().set("key4", "ss");
-
-        //GenericJackson2JsonRedisSerializer
-         redisTemplate.opsForValue().get("key3");
         //assertThat(value).isEqualTo(t);
     }
 }

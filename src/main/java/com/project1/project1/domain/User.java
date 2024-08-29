@@ -1,14 +1,13 @@
 package com.project1.project1.domain;
 
 
-import com.project1.project1.dto.UserDTO;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
 public class User {
     private Long id;
     private String name;

@@ -12,7 +12,7 @@ public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
     //DTO -> Domain 변환
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
+    //@Mapping(target = "createdAt", ignore = true)
     User toDomain(UserDTO dto);
 
     // Domain -> DTO 변환

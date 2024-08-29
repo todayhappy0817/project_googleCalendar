@@ -40,6 +40,9 @@ dependencies {
 	implementation group: 'com.h2database', name: 'h2', version: '2.3.232'
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	//SpringBoot 2.3 이상 부터는 validation 의존성 분리되었다.
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 tasks.named('test') {
