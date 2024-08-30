@@ -5,6 +5,6 @@ import com.project1.project1.domain.Users;
 
 import java.util.List;
 
-public interface UserRepositoryCustom {
+public interface UserCustomRepository {
     List<Users> findAllUsers();
 }
