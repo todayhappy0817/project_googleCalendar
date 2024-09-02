@@ -1,6 +1,6 @@
 package com.project1.project1.domain;
 
-import com.querydsl.core.types.EntityPath;
+//import com.querydsl.core.types.EntityPath;
 import jakarta.persistence.*;
 import lombok.*;
 

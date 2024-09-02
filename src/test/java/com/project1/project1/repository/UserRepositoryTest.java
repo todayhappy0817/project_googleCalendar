@@ -31,7 +31,6 @@ public class UserRepositoryTest {
                                 .name("d")
                                 .email("s")
                                 .build();
-
         Users user = userRepository.findByName("hi2");
         System.out.println(user.toString());
         user.setName("hi3");

@@ -13,20 +13,10 @@ java {
 	}
 }
 
-sourceSets {
-	main.java.srcDirs += 'src/main/generated' // 생성된 Q 클래스 경로
-}
-
-compileQuerydsl {
-	options.annotationProcessorPath = configurations.annotationProcessor
-}
-
 configurations {
-//	compileOnly {
-//		extendsFrom annotationProcessor
-//	}
-	querydsl.extendsFrom compileClasspath
-	annotationProcessor
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 }
 
 repositories {
@@ -53,8 +43,9 @@ dependencies {
 	//SpringBoot 2.3 이상부터는 validation 의존성 분리되었다.
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	//SpringBoot 3.0 이상부터는 javax가 아닌 jakarta EE를 사용하기 때문에 주입할 필요가 있다.
+
 	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-	annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
 	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
 	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 }

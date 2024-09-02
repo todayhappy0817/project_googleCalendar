@@ -2,16 +2,16 @@ package com.project1.project1.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.cfg.Environment;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @Configuration
-@RequiredArgsConstructor
+@EnableJpaAuditing
 public class QueryDSLConfig {
-    private final EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Bean
     public JPAQueryFactory jpaQueryFactory() {

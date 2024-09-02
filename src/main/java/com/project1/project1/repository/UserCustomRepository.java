@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface UserCustomRepository {
     List<Users> findAllUsers();
+    Users findUserByUserName(String username);
 }
