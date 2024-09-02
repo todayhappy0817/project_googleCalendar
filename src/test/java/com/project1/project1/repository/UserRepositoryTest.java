@@ -20,8 +20,8 @@ public class UserRepositoryTest {
 
     @BeforeEach
     public void setUp() {
-        userRepository.deleteAll();
-//        userRepository.save(new Users("hi2"));
+//        userRepository.deleteAll();
+        userRepository.save(Users.builder().name("hi2").build());
     }
 
     @Test
@@ -45,6 +45,14 @@ public class UserRepositoryTest {
         assertThat(users.toString()).isEqualTo(users2.toString());
         //특정 값을 비교하거나 String 값 비교에는 isEqualTo 를 사용하고, 객체의 참조 값(주소)를 비교할 때에는 isSameAs 를 사용한다!
     }
+    @Test
+    @DisplayName("JPQL 1차 캐싱 테스트")
+    public void jpaCashTest() {
+        List<Users> users = userRepository.findAll();
+        List<Users> users2 = userRepository.findAll();
+        assertThat(users.toString()).isEqualTo(users2.toString());
+    }
+
     @Test
     public void countAll(){
         long count = userRepository.count();
