@@ -5,7 +5,6 @@ import com.project1.project1.domain.QUsers;
 import com.project1.project1.domain.Users;
 import com.project1.project1.repository.UserCustomRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +29,6 @@ public class UserCustomRepositoryImpl implements UserCustomRepository {
                 .where(users.name.eq(username))
                 .fetchOne(); //단일 조건을 원할 경우
     }
-    @Transactional
     @Override
     public void updateUser(String username){
         jpaQueryFactory.update(users)
