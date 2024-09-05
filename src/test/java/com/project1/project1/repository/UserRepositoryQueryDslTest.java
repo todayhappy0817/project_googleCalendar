@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
@@ -19,25 +18,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class UserRepositoryQueryDslTest {
-
     @Autowired
-    @Qualifier("customRepository")
-    private UserCustomRepository userCustomRepository;
+    private UsersRepository UsersRepository;
+
     @PersistenceContext
     private EntityManager entityManager;
 
     @Test
     public void findAll() {
-        List<Users> users = userCustomRepository.findAllUsers();
-        List<Users> users2 = userCustomRepository.findAllUsers();
+        List<Users> users = UsersRepository.findAllUsers();
+        List<Users> users2 = UsersRepository.findAllUsers();
         assertThat(users.get(0).getName()).isEqualTo(users2.get(0).getName());
     }
 
     @Test
     public void findUserByName() {
-        Users user = userCustomRepository.findUserByUserName("hi1");
-        Users user2 = userCustomRepository.findUserByUserName("hi1");
+        Users user = UsersRepository.findUserByUserName("hi1");
+        Users user2 = UsersRepository.findUserByUserName("hi1");
         assertThat(user).isSameAs(user2);
+    }
+
+    @Test
+    @Rollback(false)
+    @Transactional
+    public void JpaSaveTest(){
+        Users user = UsersRepository.findById(33L).orElse(null);
+        List<Users> users = UsersRepository.findAllUsers();
     }
 
     @Test
@@ -45,15 +51,15 @@ public class UserRepositoryQueryDslTest {
     @Rollback(false)
     @DisplayName("1차 캐시 테스트")
     public void queryDSLCashTest(){
-        List<Users> users = userCustomRepository.findAllUsers();
+        List<Users> users = UsersRepository.findAllUsers();
         System.out.println("user:"+users.get(0).getName());
-        userCustomRepository.updateUser(users.get(0).getName());
+        UsersRepository.updateUser(users.get(0).getName());
         entityManager.flush();
-        entityManager.clear();
+        //entityManager.clear();
         System.out.println("작동 순서 확인용 로그입니다");
-        List<Users> users2 = userCustomRepository.findAllUsers();
+        List<Users> users2 = UsersRepository.findAllUsers();
         System.out.println("user2:"+users2.get(0).getName());
         assertThat(users.get(0).getName()).isNotEqualTo(users2.get(0).getName());
-//        assertThat(users).isNotSameAs(users2);
+        //assertThat(users).isNotEqualTo(users2);
     }
 }

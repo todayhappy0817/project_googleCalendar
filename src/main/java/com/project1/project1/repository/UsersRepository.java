@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-@Primary
 public interface UsersRepository extends JpaRepository<Users, Long>, UserCustomRepository{
     @Query("SELECT u from Users u where u.id = :username")
     List<Users> findOrdersByUsername(@Param("username") String username);
