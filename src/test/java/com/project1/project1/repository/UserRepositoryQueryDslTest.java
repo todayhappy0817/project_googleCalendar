@@ -32,10 +32,18 @@ public class UserRepositoryQueryDslTest {
     }
 
     @Test
+    @Transactional
     public void findUserByName() {
         Users user = UsersRepository.findUserByUserName("hi1");
         Users user2 = UsersRepository.findUserByUserName("hi1");
         assertThat(user).isSameAs(user2);
+    }
+    @Test
+    @Transactional
+    public void findUserByAll() {
+        List<Users> users = UsersRepository.findAllUsers();
+        List<Users> users2 = UsersRepository.findAllUsers();
+        assertThat(users).isNotSameAs(users2);
     }
 
     @Test

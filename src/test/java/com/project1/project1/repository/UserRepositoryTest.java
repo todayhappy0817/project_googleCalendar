@@ -54,6 +54,15 @@ public class UserRepositoryTest {
     }
 
     @Test
+    @DisplayName("1차 캐시 테스트")
+    @Transactional
+    public void findByAll(){
+        List<Users> users = userRepository.findAll();
+        List<Users> users2 = userRepository.findAll();
+        assertThat(users).isNotSameAs(users2);
+    }
+
+    @Test
     @Transactional
     @DisplayName("1차 캐싱과 쓰기 지연 테스트")
     @Rollback(false)
