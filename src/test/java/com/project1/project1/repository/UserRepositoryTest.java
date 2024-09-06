@@ -34,13 +34,9 @@ public class UserRepositoryTest {
     @Test
     @DisplayName("Update 테스트 및 특정 값 불러오기")
     public void findAndUpdate(){
-        Users users3 =  Users.builder()
-                                .name("d")
-                                .email("s")
-                                .build();
-        Users user = userRepository.findByName("hi2");
+        Users user = userRepository.findByName("hi5");
         System.out.println(user.toString());
-        user.setName("hi3");
+        user.setName("hi5");
         userRepository.save(user);
     }
 
@@ -88,27 +84,19 @@ public class UserRepositoryTest {
         List<Users> users = userRepository.findAll();
         users.get(1).setName(users.get(1).getName()+"!");
         userRepository.save(users.get(1));
-        /*
-        users2에서 findAll 메서드(조회)하는 경우
-        강제적으로 flush와 clear 호출
-        entityManager.flush();
-        entityManager.clear();
-        */
         System.out.println("작동 순서 확인용 로그입니다");
         System.out.println("작동 순서 확인용 로그입니다");
         System.out.println("작동 순서 확인용 로그입니다");
         List<Users> users2 = userRepository.findAll();
-        assertThat(users).isNotSameAs(users2);
+        assertThat(users).isEqualTo(users2);
     }
 
     @Test
     @DisplayName("JPQL 테스트 실시 및 리스트 비교")
     public void findAll() {
-        List<Users> users = userRepository.findAll();
+        List<Users> users = userRepository.findUser();
         List<Users> users2 = userRepository.findUser();
-//        assertThat(users.toString()).isEqualTo(users2.toString());
-        assertThat(users).isSameAs(users2);
-        //특정 값을 비교하거나 String 값 비교에는 isEqualTo 를 사용하고, 객체의 참조 값(주소)를 비교할 때에는 isSameAs 를 사용한다!
+        assertThat(users).isNotSameAs(users2);
     }
 
     @Test

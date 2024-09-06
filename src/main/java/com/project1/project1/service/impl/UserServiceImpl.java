@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Log4j2
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
 
     @Override
 //    @Cacheable()
