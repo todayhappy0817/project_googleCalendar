@@ -5,11 +5,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+
+@Entity
 @Getter
 @Setter
-@Entity
-@ToString
+@ToString(exclude = "orders")
 @Table(name ="Users")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,4 +23,7 @@ public class Users {
     private Long id;
     private String name;
     private String email;
+
+    @OneToMany(mappedBy = "users")
+    private List<Orders> orders = new ArrayList<>();
 }

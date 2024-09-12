@@ -16,5 +16,8 @@ public interface UsersRepository extends JpaRepository<Users, Long>, UserCustomR
     @Query("SELECT u from Users u")
     List<Users> findUser();
 
+    @Query("SELECT u from Users u where u.name = :username")
+    Users findUsersById(@Param("username") String username);
+
     Users findByName(String username);
 }

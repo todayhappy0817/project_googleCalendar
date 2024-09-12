@@ -1,5 +1,6 @@
 package com.project1.project1.repository;
 
+import com.project1.project1.domain.Orders;
 import com.project1.project1.domain.Users;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -22,6 +23,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class UserRepositoryTest {
     @Autowired
     private UsersRepository userRepository;
+    @Autowired
+    private OrderRepository orderRepository;
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -87,8 +90,10 @@ public class UserRepositoryTest {
         System.out.println("작동 순서 확인용 로그입니다");
         System.out.println("작동 순서 확인용 로그입니다");
         System.out.println("작동 순서 확인용 로그입니다");
+        entityManager.flush();
+        entityManager.clear();
         List<Users> users2 = userRepository.findAll();
-        assertThat(users).isEqualTo(users2);
+        assertThat(users).isNotEqualTo(users2);
     }
 
     @Test
@@ -104,4 +109,25 @@ public class UserRepositoryTest {
         long count = userRepository.count();
         assertThat(count).isGreaterThan(0); //숫자형 값이 특정 값보다 큰지 테스트하는 제약 조건
     }
+
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void insertJPAOrderService(){
+        //userRepository.deleteAll();
+        //userRepository.save(Users.builder().name("hi2").build());
+        Users user = userRepository.findById(33L).orElse(null);
+        assert user != null;
+        System.out.println(user.getOrders());
+    }
+
+    @Test
+    public void insertOrderService(){
+        //SELECT u from Users u where u.name = :username
+        Users users = userRepository.findUsersById("이준원"); //유저 정보 조회
+        assert users != null;
+        //insert into ORDERS(orderData,customer_id) values('아이템1',3L)
+//        orderRepository.insertOrder("아이템1",users.getId()); //주문정보 및 유저_id(외래키 값)로 데이터 생성
+    }
+
 }

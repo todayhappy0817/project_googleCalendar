@@ -62,10 +62,10 @@ public class UserRepositoryQueryDslTest {
         List<Users> users = UsersRepository.findAllUsers();
         System.out.println("user:"+users.get(0).getName());
         UsersRepository.updateUser(users.get(0).getName());
+        entityManager.flush();
+        entityManager.clear();
         System.out.println("작동 순서 확인용 로그입니다");
         List<Users> users2 = UsersRepository.findAllUsers();
-//        System.out.println("user2:"+users2.get(0).getName());
-//        assertThat(users.get(0).getName()).isNotEqualTo(users2.get(0).getName());
-        //assertThat(users).isNotEqualTo(users2);
+        assertThat(users).isNotEqualTo(users2);
     }
 }
