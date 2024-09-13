@@ -114,11 +114,15 @@ public class UserRepositoryTest {
     @Transactional
     @Rollback(false)
     public void insertJPAOrderService(){
-        //userRepository.deleteAll();
-        //userRepository.save(Users.builder().name("hi2").build());
         Users user = userRepository.findById(33L).orElse(null);
         assert user != null;
         System.out.println(user.getOrders());
+        Orders orders = orderRepository.findById(2L).orElse(null);
+        assert orders != null;
+        System.out.println("오더 정보"+orders.getUsers());
+//        orderRepository.save(Orders.builder().orderData("아이스커피")
+//                            .users(user)
+//                            .build());
     }
 
     @Test

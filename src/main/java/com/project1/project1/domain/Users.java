@@ -9,14 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity
+
 @Getter
 @Setter
-@ToString(exclude = "orders")
 @Table(name ="Users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(exclude = "orders")
+@Entity
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

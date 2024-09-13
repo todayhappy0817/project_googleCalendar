@@ -5,11 +5,11 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString(exclude = "users")
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(exclude = "users")
+@Entity
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
