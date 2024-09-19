@@ -30,8 +30,12 @@ public class UserRepositoryTest {
 
 //    @BeforeEach
     public void setUp() {
-        //userRepository.deleteAll();
-        //userRepository.save(Users.builder().name("hi2").build());
+        userRepository.deleteAll();
+        orderRepository.deleteAll();
+
+        userRepository.save(Users.builder().name("이준원").build());
+        Users users = userRepository.findUsersByName("이준원");
+        orderRepository.save(Orders.builder().orderData("아이템1").users(users).build());
     }
 
     @Test
@@ -128,10 +132,22 @@ public class UserRepositoryTest {
     @Test
     public void insertOrderService(){
         //SELECT u from Users u where u.name = :username
-        Users users = userRepository.findUsersById("이준원"); //유저 정보 조회
+        Users users = userRepository.findUsersByName("이준원"); //유저 정보 조회
         assert users != null;
         //insert into ORDERS(orderData,customer_id) values('아이템1',3L)
 //        orderRepository.insertOrder("아이템1",users.getId()); //주문정보 및 유저_id(외래키 값)로 데이터 생성
     }
 
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void JPAMappedByTest(){
+        Users users = userRepository.findUsersByName("이준원");
+        assert users != null;
+        Orders orders = Orders.builder()
+                            .orderData("아이스커피")
+                            .build();
+        users.getOrders().add(orders);
+        userRepository.save(users);
+    }
 }

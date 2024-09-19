@@ -27,4 +27,9 @@ public class Users {
 
     @OneToMany(mappedBy = "users")
     private List<Orders> orders = new ArrayList<>();
+
+    public void addOrder(Orders order) {
+        this.orders.add(order);
+    }
+
 }
