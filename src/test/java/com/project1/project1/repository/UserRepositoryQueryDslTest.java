@@ -68,4 +68,14 @@ public class UserRepositoryQueryDslTest {
         List<Users> users2 = UsersRepository.findAllUsers();
         assertThat(users).isNotEqualTo(users2);
     }
+
+    @Test
+    @Transactional
+    public void queryDSLMappedByTest(){
+        System.out.println("QueryDSL로 데이터 조회 실시");
+        Users users = UsersRepository.findUserByUserName("테스트입니다1111");
+        System.out.println("QueryDSL로 데이터 조회한 유저의 주문 조회");
+        System.out.println("데이터:"+users.getOrders());
+    }
+
 }

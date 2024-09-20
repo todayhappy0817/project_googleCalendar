@@ -5,6 +5,7 @@ import com.project1.project1.domain.Users;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,14 +30,14 @@ public class UserRepositoryTest {
     private EntityManager entityManager;
 
 //    @BeforeEach
-    public void setUp() {
-        userRepository.deleteAll();
-        orderRepository.deleteAll();
-
-        userRepository.save(Users.builder().name("이준원").build());
-        Users users = userRepository.findUsersByName("이준원");
-        orderRepository.save(Orders.builder().orderData("아이템1").users(users).build());
-    }
+//    public void setUp() {
+//        userRepository.deleteAll();
+//        orderRepository.deleteAll();
+//
+//        userRepository.save(Users.builder().name("이준원").build());
+//        Users users = userRepository.findUsersByName("이준원");
+//        orderRepository.save(Orders.builder().orderData("아이템1").users(users).build());
+//    }
 
     @Test
     @DisplayName("Update 테스트 및 특정 값 불러오기")
@@ -150,4 +151,41 @@ public class UserRepositoryTest {
         users.getOrders().add(orders);
         userRepository.save(users);
     }
+
+    @Test
+    @Transactional
+    public void JPALazyTest(){
+        System.out.println("유저 정보 조회");
+//        Users users = userRepository.findById(33L).orElse(null);
+        List<Users> userAll = userRepository.findAll();
+        for(Users users : userAll) {
+            System.out.println("유저 이름 조회:" + users.getName());
+            System.out.println("주문 정보 조회");
+            List<Orders> orders = users.getOrders();
+            System.out.println("주문 정보" + orders);
+        }
+    }
+
+    @Test
+    @Transactional
+    public void JPAManyToOneTest(){
+        System.out.println("주문 정보 조회");
+        List<Orders> orders = orderRepository.findAll();
+        for(Orders order : orders) {
+            System.out.println("현재 주문번호 데이터:"+order.getId());
+            System.out.println("현재 주문 데이터:"+order.getOrderData());
+        }
+    }
+
+    @Test
+    @Transactional
+    public void JpaLazyFetchTest(){
+        System.out.println("유저 정보 조회");
+        Users users = userRepository.findById(33L).orElse(null);
+        System.out.println("현재 유저 정보:"+users.getName());
+        List<Orders> orders = users.getOrders();
+        System.out.println("현재 유저의 주문정보 조회");
+        System.out.println("현재 유저의 주문정보:"+orders.size());
+    }
 }
+
