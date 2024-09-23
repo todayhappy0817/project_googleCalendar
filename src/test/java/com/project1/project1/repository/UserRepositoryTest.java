@@ -168,18 +168,20 @@ public class UserRepositoryTest {
 
     @Test
     @Transactional
-    public void JPAManyToOneTest(){
+    public void Jpa_NPlusOneTest(){
         System.out.println("주문 정보 조회");
-        List<Orders> orders = orderRepository.findAll();
+//        List<Orders> orders = orderRepository.findAll();
+        List<Orders> orders = orderRepository.findOrder();
         for(Orders order : orders) {
             System.out.println("현재 주문번호 데이터:"+order.getId());
             System.out.println("현재 주문 데이터:"+order.getOrderData());
+            System.out.println("현재 주문 데이터의 유저 정보:"+order.getUsers());
         }
     }
 
     @Test
     @Transactional
-    public void JpaLazyFetchTest(){
+    public void JpaEAGERFetchTest(){
         System.out.println("유저 정보 조회");
         Users users = userRepository.findById(33L).orElse(null);
         System.out.println("현재 유저 정보:"+users.getName());

@@ -16,7 +16,7 @@ public class Orders {
     private long id;
     private String orderData;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "Users_ID")
     private Users users;
 }

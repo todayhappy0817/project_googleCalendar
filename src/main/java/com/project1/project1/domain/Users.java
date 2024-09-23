@@ -25,6 +25,7 @@ public class Users {
     private String name;
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "users")
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+    @OneToMany(mappedBy = "users")
     private List<Orders> orders = new ArrayList<>();
 }

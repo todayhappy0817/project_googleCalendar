@@ -6,7 +6,6 @@ import com.project1.project1.domain.Users;
 import com.project1.project1.repository.UserCustomRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

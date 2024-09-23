@@ -1,5 +1,6 @@
 package com.project1.project1.repository;
 
+import com.project1.project1.domain.Orders;
 import com.project1.project1.domain.Users;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -20,7 +21,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class UserRepositoryQueryDslTest {
     @Autowired
     private UsersRepository UsersRepository;
-
+    @Autowired
+    private OrderRepository orderRepository;
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -77,5 +79,19 @@ public class UserRepositoryQueryDslTest {
         System.out.println("QueryDSL로 데이터 조회한 유저의 주문 조회");
         System.out.println("데이터:"+users.getOrders());
     }
+
+    @Test
+    @Transactional
+    public void Jpa_NPlusOneTest(){
+        System.out.println("주문 정보 조회");
+//        List<Orders> orders = orderRepository.findAll();
+        List<Orders> orders = orderRepository.findAllOrders();
+        for(Orders order : orders) {
+            System.out.println("현재 주문번호 데이터:"+order.getId());
+            System.out.println("현재 주문 데이터:"+order.getOrderData());
+            System.out.println("현재 주문 데이터의 유저 정보:"+order.getUsers());
+        }
+    }
+
 
 }
