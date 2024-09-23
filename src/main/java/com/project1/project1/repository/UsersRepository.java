@@ -1,6 +1,7 @@
 package com.project1.project1.repository;
 
 
+import com.project1.project1.domain.Orders;
 import com.project1.project1.domain.Users;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,7 @@ public interface UsersRepository extends JpaRepository<Users, Long>, UserCustomR
     Users findUsersByName(@Param("username") String username);
 
     Users findByName(String username);
+
+    @Query("SELECT DISTINCT o FROM Orders o JOIN FETCH o.users")
+    List<Orders> findOrder();
 }
