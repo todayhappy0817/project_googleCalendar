@@ -3,6 +3,7 @@ package com.project1.project1.domain;
 //import com.querydsl.core.types.EntityPath;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class Users {
     private String name;
     private String email;
 
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
-    @OneToMany(mappedBy = "users")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    @BatchSize(size = 3)
     private List<Orders> orders = new ArrayList<>();
 }

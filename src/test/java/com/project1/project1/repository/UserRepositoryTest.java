@@ -32,12 +32,9 @@ public class UserRepositoryTest {
 
 //    @BeforeEach
 //    public void setUp() {
-//        userRepository.deleteAll();
-//        orderRepository.deleteAll();
-//
-//        userRepository.save(Users.builder().name("이준원").build());
-//        Users users = userRepository.findUsersByName("이준원");
-//        orderRepository.save(Orders.builder().orderData("아이템1").users(users).build());
+//        userRepository.save(Users.builder().name("이준원3").build());
+//        Users users = userRepository.findUsersByName("이준원3");
+//        orderRepository.save(Orders.builder().orderData("아이템4").users(users).build());
 //    }
 
     @Test
@@ -171,8 +168,8 @@ public class UserRepositoryTest {
     @Transactional
     public void Jpa_NPlusOneTest(){
         System.out.println("주문 정보 조회");
-//        List<Orders> orders = orderRepository.findAll();
-        List<Orders> orders = orderRepository.findOrder();
+        List<Orders> orders = orderRepository.findAll();
+//        List<Orders> orders = orderRepository.findOrder();
         for(Orders order : orders) {
             System.out.println("현재 주문번호 데이터:"+order.getId());
             System.out.println("현재 주문 데이터:"+order.getOrderData());
@@ -198,6 +195,16 @@ public class UserRepositoryTest {
         List<Map<String,String>> useObject= orderRepository.findOrderJoinUsers();
         for(Map<String,String> map : useObject){
             System.out.println(map.get("name")+"의 주문 정보:"+map.get("ORDER_DATA"));
+        }
+    }
+    @Test
+    @Transactional
+    public void JpaBatchTest(){
+        System.out.println("유저 정보 조회");
+        List<Users> users = userRepository.findAll();
+        assertThat(users.size()).isEqualTo(5);
+        for(Users user : users) {
+            System.out.println("현재 유저의 주문 개수 정보:" + user.getOrders().size());
         }
     }
 }
