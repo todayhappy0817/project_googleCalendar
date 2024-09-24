@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -188,6 +189,16 @@ public class UserRepositoryTest {
         List<Orders> orders = users.getOrders();
         System.out.println("현재 유저의 주문정보 조회");
         System.out.println("현재 유저의 주문정보:"+orders.size());
+    }
+
+    @Test
+    @Transactional
+    public void Jpa_joinTest(){
+        System.out.println("주문 정보 조회");
+        List<Map<String,String>> useObject= orderRepository.findOrderJoinUsers();
+        for(Map<String,String> map : useObject){
+            System.out.println(map.get("name")+"의 주문 정보:"+map.get("ORDER_DATA"));
+        }
     }
 }
 

@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -90,15 +91,6 @@ public class UserRepositoryQueryDslTest {
             System.out.println("현재 주문번호 데이터:"+order.getId());
             System.out.println("현재 주문 데이터:"+order.getOrderData());
             System.out.println("현재 주문 데이터의 유저 정보:"+order.getUsers());
-        }
-    }
-    @Test
-    @Transactional
-    public void Jpa_joinTest(){
-        System.out.println("주문 정보 조회");
-        List<String> userNameList = orderRepository.findOrderJoinUsers("33");
-        for(String userName : userNameList) {
-            System.out.println("현재 주문번호 유저명:"+userName);
         }
     }
 

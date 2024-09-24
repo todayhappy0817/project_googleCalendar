@@ -6,11 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OrderRepository extends JpaRepository<Orders, Long>, OrderCustomRepository {
     @Query("SELECT DISTINCT o FROM Orders o JOIN FETCH o.users")
     List<Orders> findOrder();
-
-    @Query("SELECT o FROM Users u JOIN Orders o where u.id = :userId")
-    List<String> findOrderJoinUsers(@Param("userId") String userId);
+    @Query(value = "select O.ORDER_DATA ,u.name from Orders O join Users u where o.USERS_ID = u.id", nativeQuery=true)
+    List<Map<String,String>> findOrderJoinUsers();
 }
