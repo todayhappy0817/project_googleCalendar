@@ -187,7 +187,6 @@ public class UserRepositoryTest {
         System.out.println("현재 유저의 주문정보 조회");
         System.out.println("현재 유저의 주문정보:"+orders.size());
     }
-
     @Test
     @Transactional
     public void Jpa_joinTest(){

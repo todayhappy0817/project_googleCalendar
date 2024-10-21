@@ -4,10 +4,8 @@ package com.project1.project1.repository.impl;
 import com.project1.project1.domain.QUsers;
 import com.project1.project1.domain.Users;
 import com.project1.project1.repository.UserCustomRepository;
-import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.expression.spel.ast.Projection;
 
 import java.util.List;
 
@@ -36,4 +34,6 @@ public class UserCustomRepositoryImpl implements UserCustomRepository {
                 .where(users.name.eq(username))
                 .execute();
     }
+
+
 }
