@@ -27,20 +27,19 @@ public class JpaSecondCacheTest {
     void testSecondLevelCache() {
         // 첫 번째 EntityManager로 조회
         EntityManager em1 = entityManagerFactory.createEntityManager();
-        em1.getTransaction().begin();
+//        em1.getTransaction().begin();
         Users user1 = em1.find(Users.class, 33L);
-        em1.getTransaction().commit();
+//        em1.getTransaction().commit();
         em1.close();
 
         // 두 번째 EntityManager로 조회 (다른 영속성 컨텍스트)
         EntityManager em2 = entityManagerFactory.createEntityManager();
-        em2.getTransaction().begin();
+//        em2.getTransaction().begin();
         Users user2 = em2.find(Users.class, 33L);  // 이때는 2차 캐시에서 가져옴
-        em2.getTransaction().commit();
+//        em2.getTransaction().commit();
         em2.close();
 
-        assertThat(user1.getId()).isEqualTo(user2.getId());
+        assertThat(user1).isEqualTo(user2);
     }
-
 
 }

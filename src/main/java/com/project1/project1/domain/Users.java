@@ -4,7 +4,8 @@ package com.project1.project1.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.BatchSize;
-
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 @Builder
 @ToString(exclude = "orders")
 @Entity
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
