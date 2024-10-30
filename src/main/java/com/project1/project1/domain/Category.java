@@ -15,7 +15,6 @@ public class Category {
     private Long categoryId;
     @Enumerated(EnumType.STRING)
     private CategoryType categoryType;
-
     public enum CategoryType {
         Earphone, Phone, PC
     }

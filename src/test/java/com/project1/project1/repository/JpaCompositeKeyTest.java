@@ -27,10 +27,41 @@ public class JpaCompositeKeyTest {
     @PersistenceContext
     private EntityManager em;
 
+//    @Test
+//    @Transactional
+//    @Rollback(false)
+//    public void CategoryRepositoryTest() {
+//        Brand brand = new Brand();
+//        brand.setBrandName("삼성");
+//        em.persist(brand);
+//
+//        Category category = new Category();
+//        category.setCategoryType(Category.CategoryType.Phone);
+//        em.persist(category);
+//
+//        Product product = new Product();
+//        product.setBrandId(brand.getBrandId());
+//        product.setCategoryId(category.getCategoryId());
+//        product.setProductId(10024L);
+//        product.setName("Galaxy S38");
+//        em.persist(product);
+//    }
+
+    @Test
+    @Transactional
+    public void ProductSearchTest() {
+        ProductId productId = new ProductId();
+        productId.setProductId(10024L);
+        productId.setCategoryId(1L);
+        productId.setBrandId(1L);
+        Product product=em.find(Product.class, productId);
+        System.out.println("테스트 결과"+product.getCategory().getCategoryType());
+    }
+
     @Test
     @Transactional
     @Rollback(false)
-    public void CategoryRepositoryTest() {
+    public void JpaEmbeddableInsertTest(){
         Brand brand = new Brand();
         brand.setBrandName("삼성");
         em.persist(brand);
@@ -39,27 +70,12 @@ public class JpaCompositeKeyTest {
         category.setCategoryType(Category.CategoryType.Phone);
         em.persist(category);
 
+        ProductId productId = new ProductId(brand.getBrandId(),category.getCategoryId(),10022L);
         Product product = new Product();
-        product.setBrandId(brand.getBrandId());
-        product.setCategoryId(category.getCategoryId());
-        product.setProductId(10025L);
-        product.setName("Galaxy S34");
+        product.setId(productId);
+        product.setName("Galaxy S07");
         em.persist(product);
     }
-
-    @Test
-    public void ProductSearchTest() {
-        ProductId productId = new ProductId();
-        productId.setProductId(10025L);
-        productId.setCategoryId(2L);
-        productId.setBrandId(2L);
-        Product product=em.find(Product.class, productId);
-        System.out.println("테스트 결과"+product.getCategory().getCategoryType());
-        //productRepository.findById(productId);
-    }
-
-
-
 
 }
 
