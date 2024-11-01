@@ -18,4 +18,5 @@ public interface OrderRepository extends JpaRepository<Orders, Long>, OrderCusto
     List<Orders> findOrder();
     @Query(value = "select O.ORDER_DATA ,u.name from Orders O join Users u where o.USERS_ID = u.id", nativeQuery=true)
     List<Map<String,String>> findOrderJoinUsers();
+
 }

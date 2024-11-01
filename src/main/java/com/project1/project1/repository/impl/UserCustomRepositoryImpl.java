@@ -3,7 +3,9 @@ package com.project1.project1.repository.impl;
 
 import com.project1.project1.domain.QUsers;
 import com.project1.project1.domain.Users;
+import com.project1.project1.dto.UserDTO;
 import com.project1.project1.repository.UserCustomRepository;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -34,6 +36,14 @@ public class UserCustomRepositoryImpl implements UserCustomRepository {
                 .where(users.name.eq(username))
                 .execute();
     }
-
-
+    @Override
+    public List<UserDTO> findAllUserDTOs(){
+        return jpaQueryFactory.select(Projections.constructor(UserDTO.class,
+                        users.id,
+                        users.name,
+                        users.email
+                        ))
+                .from(users)
+                .fetch();
+    }
 }

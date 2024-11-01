@@ -2,6 +2,7 @@ package com.project1.project1.repository;
 
 import com.project1.project1.domain.Orders;
 import com.project1.project1.domain.Users;
+import com.project1.project1.dto.UserDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -205,6 +206,12 @@ public class UserRepositoryTest {
         for(Users user : users) {
             System.out.println("현재 유저의 주문 개수 정보:" + user.getOrders().size());
         }
+    }
+
+    @Test
+    public void JpaMemberDtoTest(){
+        List<UserDTO> userDTOS = userRepository.findUserDTO();
+        System.out.println("DTO 정보" + userDTOS.toString());
     }
 }
 

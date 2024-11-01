@@ -3,6 +3,7 @@ package com.project1.project1.repository;
 import ch.qos.logback.core.CoreConstants;
 import com.project1.project1.domain.Orders;
 import com.project1.project1.domain.Users;
+import com.project1.project1.dto.UserDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +30,8 @@ public class UserRepositoryQueryDslTest {
     private OrderRepository orderRepository;
     @PersistenceContext
     private EntityManager entityManager;
+    @Autowired
+    private UsersRepository usersRepository;
 
     @Test
     public void findAll() {
@@ -185,4 +188,11 @@ public class UserRepositoryQueryDslTest {
         return user.getEmail();
     }
 
+    @Test
+    public void UserDtoTest(){
+        List<UserDTO> userDTOS = usersRepository.findAllUserDTOs();
+        for(UserDTO userDTO : userDTOS){
+            System.out.println("유저 정보"+ userDTO.toString());
+        }
+    }
 }
